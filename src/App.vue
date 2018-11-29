@@ -17,7 +17,9 @@
               <v-card class="main-app__card" color="#F8F8F8">
                 <v-container>
                   <date-slider/>
-                  <task-row v-for="(item, index) in this.items" :key="index" v-bind="item"/>
+                  <span v-for="(item, index) in this.items" :key="index" >
+                    <task-row v-bind="item"/>
+                  </span>
                   <div style="left: 50%; position: absolute; margin-top: 16px">
                     <v-btn
                       color="green"
