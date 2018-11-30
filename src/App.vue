@@ -1,26 +1,19 @@
 <template>
   <v-app>
-    <!-- <v-toolbar fixed app>
-      <v-spacer></v-spacer>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar> -->
     <v-content  class="main-app">
       <v-container>
         <v-slide-y-transition mode="out-in">
           <v-layout column>
             <v-layout row wrap justify-center>
             <v-flex xs12 md6>
-              <div style="text-align: center">
-                <img src="/public/v.png" alt="Vuetify.js" class="mb-5" />
-              </div>
+              <new-task-input/>
               <v-card class="main-app__card" color="#F8F8F8">
                 <v-container>
                   <date-slider/>
-                  <span v-for="(item, index) in this.items" :key="index" >
+                  <span v-for="(item, index) in this.items" :key="index">
                     <task-row v-bind="item"/>
                   </span>
-                  <div style="left: 50%; position: absolute; margin-top: 16px">
+                  <!-- <div style="left: 50%; position: absolute; margin-top: 16px">
                     <v-btn
                       color="green"
                       dark
@@ -30,7 +23,7 @@
                     >
                       <v-icon>add</v-icon>
                     </v-btn>
-                  </div>
+                  </div> -->
                 </v-container>
               </v-card>
             </v-flex>
@@ -49,6 +42,7 @@
 <script>
   import TaskRow from './components/TaskRow'
   import DateSlider from './components/DateSlider'
+  import NewTaskInput from './components/NewTaskInput'
   import axios from 'axios'
   import qs from 'qs'
   import { EventBus } from './js/eventbus.js'
@@ -56,7 +50,8 @@
   export default {
     components: {
       TaskRow,
-      DateSlider
+      DateSlider,
+      NewTaskInput
     },
     created: function () {
       const today = new Date();
