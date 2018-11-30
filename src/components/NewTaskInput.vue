@@ -13,7 +13,9 @@
                 <v-flex xs1>
                     <v-card-actions>
                         <v-fade-transition>
-                            <v-btn icon small dark color="green"  v-show="text.length > 0">
+                            <v-btn fab dark small color="green"  v-show="text.length > 0"
+                                class="newtask-input__button"
+                                >
                                 <v-icon>add</v-icon>
                             </v-btn>
                         </v-fade-transition>
@@ -38,6 +40,11 @@ export default {
         margin-bottom: 24px;
         &__container {
             padding: 0 10px;
+        }
+
+        &__button {
+            width: 30px !important;
+            height: 30px !important;
         }
     }
 </style>

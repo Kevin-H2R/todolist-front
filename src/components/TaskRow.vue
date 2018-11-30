@@ -3,7 +3,7 @@
         <v-container class="task-row__container"> 
             <v-layout row align-center @click="checked = !checked">
                 <v-flex xs11>
-                    <v-card-title class="task-row__title" :class="checked ? 'task-row__title--done' : ''">
+                    <v-card-title class="task-row__title" :class="checked ? 'task-row__title--done' : ''" style="padding: 5px 10px">
                         {{ this.name }}
                     </v-card-title>
                 </v-flex>
@@ -51,8 +51,8 @@ export default {
 </script>
 <style lang="scss">
     .task-row {
-        margin: 20px 0;
-        padding: 0 25px 0 15px;
+        margin: 10px 0;
+        padding: 0 5px 0 5px;
         border-radius: 50px !important;
         &__container {
             padding: 0;

@@ -13,17 +13,6 @@
                   <span v-for="(item, index) in this.items" :key="index">
                     <task-row v-bind="item"/>
                   </span>
-                  <!-- <div style="left: 50%; position: absolute; margin-top: 16px">
-                    <v-btn
-                      color="green"
-                      dark
-                      bottom
-                      fab
-                      style="left: -50%"
-                    >
-                      <v-icon>add</v-icon>
-                    </v-btn>
-                  </div> -->
                 </v-container>
               </v-card>
             </v-flex>
