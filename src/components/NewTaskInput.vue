@@ -7,14 +7,15 @@
                         name="newTask"
                         id="newtask-input"
                         placeholder="What amazing think are you going to do?"
-                        v-model="text"
+                        v-model="taskName"
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs1>
                     <v-card-actions>
                         <v-fade-transition>
-                            <v-btn fab dark small color="green"  v-show="text.length > 0"
+                            <v-btn fab dark small color="green"  v-show="taskName.length > 0"
                                 class="newtask-input__button"
+                                @click="addTask"
                                 >
                                 <v-icon>add</v-icon>
                             </v-btn>
@@ -26,11 +27,24 @@
     </v-card>
 </template>
 <script>
+import axios from 'axios'
+import qs from 'qs'
 export default {
     name: 'new-task-input',
+    methods: {
+        addTask: function () {
+            axios.post('http://localhost:8080/todolist/api/tasks/create', qs.stringify({name: this.taskName}))
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+        }
+    },
     data: function () {
         return {
-            text: ""
+            taskName: ""
         }
     }
 }
