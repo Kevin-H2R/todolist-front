@@ -10,9 +10,14 @@
               <v-card class="main-app__card" color="#F8F8F8">
                 <v-container>
                   <date-slider/>
-                  <span v-for="(item, index) in this.items" :key="index">
-                    <task-row v-bind="item"/>
-                  </span>
+                  <!-- <v-slide-y-transition mode="out-in"> -->
+                    <transition name="slide-fade">
+                    <div v-if="this.items.length > 0">
+                      <task-row v-for="(item, index) in this.items" :key="index" v-bind="item"/>
+                    </div>
+                    </transition>
+
+                  <!-- </v-slide-y-transition> -->
                 </v-container>
               </v-card>
             </v-flex>
@@ -93,6 +98,18 @@
   .v-text-field > .v-input__control > .v-input__slot:before {
     border: none;
   }
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-10px);
+  opacity: 0;
+}
 
 </style>
 
