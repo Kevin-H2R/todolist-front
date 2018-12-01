@@ -50,13 +50,6 @@ export default {
             this.$refs.dialog.save(this.currentDate)
             this.modal = false
             EventBus.$emit('date-changed', this.currentDate);
-            // axios.post('http://localhost:8080/todolist/api/tasks/', qs.stringify({date: this.currentDate}))
-            // .then(function (response) {
-            //     console.log(response)
-            // })
-            // .catch(function (error) {
-            //     console.log(error)
-            // })
         }
     },
     methods: {
@@ -64,10 +57,10 @@ export default {
             if (!date) return null
 
             const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
+            return `${('0' + day).slice(-2)}/${month}/${year}`
         },
         parseDate: function (date) {
-            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+            return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + ('0' + date.getDate()).slice(-2)
         },
         goToTomorrow: function () {
             const date = new Date(this.currentDate);

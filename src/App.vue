@@ -6,18 +6,15 @@
           <v-layout column>
             <v-layout row wrap justify-center>
             <v-flex xs12 md6>
-              <new-task-input/>
+              <new-task-input :date="currentDate"/>
               <v-card class="main-app__card" color="#F8F8F8">
                 <v-container>
                   <date-slider/>
-                  <!-- <v-slide-y-transition mode="out-in"> -->
-                    <transition name="slide-fade">
+                  <transition name="slide-fade">
                     <div v-if="this.items.length > 0">
                       <task-row v-for="(item, index) in this.items" :key="index" v-bind="item"/>
                     </div>
-                    </transition>
-
-                  <!-- </v-slide-y-transition> -->
+                  </transition>
                 </v-container>
               </v-card>
             </v-flex>
@@ -48,8 +45,10 @@
       NewTaskInput
     },
     created: function () {
-      const today = new Date();
-      const formattedDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate()
+      const today = new Date()
+      const date = ('0' + today.getDate()).slice(-2)
+      this.currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + date
+      const formattedDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + date
       axios.post('http://localhost:8080/todolist/api/tasks/', qs.stringify({date: formattedDate}))
       .then((response) => {
         this.items = response.data
@@ -60,6 +59,7 @@
       var self = this
       EventBus.$on('date-changed', function (currentDate) {
         self.updateList(currentDate)
+        self.currentDate = currentDate
       })
     },
     methods: {
@@ -84,7 +84,8 @@
     data () {
       return {
         title: 'H2R Todolist',
-        items: []
+        items: [],
+        currentDate: null
       }
     }
   }
