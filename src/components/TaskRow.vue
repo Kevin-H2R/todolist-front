@@ -28,10 +28,6 @@
 export default {
     name: 'task-row',
     props: {
-        id: {
-            type: Number,
-            required: true
-        },
         name: {
             type: String,
             required: true
