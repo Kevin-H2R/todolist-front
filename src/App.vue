@@ -56,11 +56,17 @@
       .catch(function (error) {
         console.log(error)
       })
+
       var self = this
       EventBus.$on('date-changed', function (currentDate) {
         self.updateList(currentDate)
         self.currentDate = currentDate
       })
+
+      EventBus.$on('task-created', function (taskName) {
+        self.items.push({name: taskName, done: false})
+      })
+
     },
     methods: {
       updateList: function (currentDate) {
