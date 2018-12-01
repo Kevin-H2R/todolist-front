@@ -35,7 +35,7 @@ export default {
         addTask: function () {
             axios.post('http://localhost:8080/todolist/api/tasks/create', qs.stringify({name: this.taskName}))
             .then(function (response) {
-                console.log(response);
+                // adds created class in parent list
             })
             .catch(function (error) {
                 console.log(error)
