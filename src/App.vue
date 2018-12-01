@@ -67,7 +67,14 @@
         var that = this
         axios.post('http://localhost:8080/todolist/api/tasks/', qs.stringify({date: currentDate}))
         .then(function (response) {
-          that.items = response.data
+          if (that.items.length === 0) {
+            that.items = response.data
+            return
+          }
+          that.items = []
+          setTimeout(function () {
+            that.items = response.data
+          }, 200)
         })
         .catch(function (error) {
             console.log(error)
