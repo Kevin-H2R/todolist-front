@@ -6,7 +6,7 @@
                     <v-text-field
                         name="newTask"
                         id="newtask-input"
-                        placeholder="What amazing think are you going to do?"
+                        placeholder="What amazing things are you going to do?"
                         v-model="taskName"
                     ></v-text-field>
                 </v-flex>
