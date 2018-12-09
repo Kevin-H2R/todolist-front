@@ -1,7 +1,7 @@
 <template>
     <v-card class="task-row" hover tile>
         <v-container class="task-row__container"> 
-            <v-layout row align-center @click="checked = !checked">
+            <v-layout row align-center @click="toggleCheckedState">
                 <v-flex xs11>
                     <v-card-title class="task-row__title" :class="checked ? 'task-row__title--done' : ''" style="padding: 5px 10px">
                         {{ this.name }}
@@ -25,9 +25,16 @@
     </v-card>
 </template>
 <script>
+import axios from 'axios'
+import qs from 'qs'
+
 export default {
     name: 'task-row',
     props: {
+        id: {
+            type: Number,
+            required: true
+        },
         name: {
             type: String,
             required: true
@@ -36,6 +43,18 @@ export default {
             type: Boolean,
             required: true
         },
+    },
+    methods: {
+        toggleCheckedState: function () {
+            this.checked = !this.checked
+            axios.post('http://localhost:8080/todolist/api/tasks/check', qs.stringify({id: this.id}))
+            .then(function (response) {
+            })
+            .catch(function (error){
+                console.log(error)
+                this.checked = !this.checked
+            })
+        }
     },
     data: function () {
         return {
