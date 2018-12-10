@@ -37,6 +37,8 @@
   import axios from 'axios'
   import qs from 'qs'
   import { EventBus } from './js/eventbus.js'
+  import { url } from './js/database.js'
+
 
   export default {
     components: {
@@ -49,7 +51,7 @@
       const date = ('0' + today.getDate()).slice(-2)
       this.currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + date
       const formattedDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + date
-      axios.post('http://localhost:8080/todolist/api/tasks/', qs.stringify({date: formattedDate}))
+      axios.post(url + 'tasks/', qs.stringify({date: formattedDate}))
       .then((response) => {
         this.items = response.data
       })
@@ -63,15 +65,15 @@
         self.currentDate = currentDate
       })
 
-      EventBus.$on('task-created', function (taskName) {
-        self.items.push({name: taskName, done: false})
+      EventBus.$on('task-created', function (task) {
+        self.items.push({id: task.id, name: task.name, done: false})
       })
 
     },
     methods: {
       updateList: function (currentDate) {
         var that = this
-        axios.post('http://localhost:8080/todolist/api/tasks/', qs.stringify({date: currentDate}))
+        axios.post(url + 'tasks/', qs.stringify({date: currentDate}))
         .then(function (response) {
           if (that.items.length === 0) {
             that.items = response.data

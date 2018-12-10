@@ -33,8 +33,6 @@
 </template>
 <script>
 
-import axios from 'axios'
-import qs from 'qs'
 import { EventBus } from '../js/eventbus.js'
 
 export default {

@@ -32,6 +32,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import { EventBus } from '../js/eventbus.js'
+import { url } from '../js/database.js'
 
 export default {
     name: 'new-task-input',
@@ -44,9 +45,9 @@ export default {
     methods: {
         addTask: function () {
             var that = this
-            axios.post('http://localhost:8080/todolist/api/tasks/create', qs.stringify({name: this.taskName, date: this.date}))
+            axios.post(url + 'tasks/create', qs.stringify({name: this.taskName, date: this.date}))
             .then(function (response) {
-                EventBus.$emit('task-created', that.taskName)
+                EventBus.$emit('task-created', {id: response.data, name: that.taskName})
                 that.taskName = ""
             })
             .catch(function (error) {

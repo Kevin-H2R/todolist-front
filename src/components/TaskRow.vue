@@ -27,6 +27,7 @@
 <script>
 import axios from 'axios'
 import qs from 'qs'
+import { url } from '../js/database.js'
 
 export default {
     name: 'task-row',
@@ -47,7 +48,7 @@ export default {
     methods: {
         toggleCheckedState: function () {
             this.checked = !this.checked
-            axios.post('http://localhost:8080/todolist/api/tasks/check', qs.stringify({id: this.id}))
+            axios.post(url + 'tasks/check', qs.stringify({id: this.id}))
             .then(function (response) {
             })
             .catch(function (error){
