@@ -45,7 +45,7 @@ export default {
     methods: {
         addTask: function () {
             var that = this
-            axios.post(url + 'tasks/create', qs.stringify({name: this.taskName, date: this.date}))
+            axios.post(url + 'tasks/create/', qs.stringify({name: this.taskName, date: this.date}))
             .then(function (response) {
                 EventBus.$emit('task-created', {id: response.data, name: that.taskName})
                 that.taskName = ""

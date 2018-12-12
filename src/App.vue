@@ -14,6 +14,9 @@
                     <div v-if="this.items.length > 0">
                       <task-row v-for="(item, index) in this.items" :key="index" v-bind="item"/>
                     </div>
+                    <div v-else-if="loading">
+                      <task-row-loader v-for="i in 5" :key="i"/>
+                    </div>
                   </transition>
                 </v-container>
               </v-card>
@@ -34,6 +37,7 @@
   import TaskRow from './components/TaskRow'
   import DateSlider from './components/DateSlider'
   import NewTaskInput from './components/NewTaskInput'
+  import TaskRowLoader from './components/TaskRowLoader'
   import axios from 'axios'
   import qs from 'qs'
   import { EventBus } from './js/eventbus.js'
@@ -44,7 +48,8 @@
     components: {
       TaskRow,
       DateSlider,
-      NewTaskInput
+      NewTaskInput,
+      TaskRowLoader
     },
     created: function () {
       const today = new Date()
@@ -53,6 +58,7 @@
       const formattedDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + date
       axios.post(url + 'tasks/', qs.stringify({date: formattedDate}))
       .then((response) => {
+        this.loading = false
         this.items = response.data
       })
       .catch(function (error) {
@@ -93,7 +99,8 @@
       return {
         title: 'H2R Todolist',
         items: [],
-        currentDate: null
+        currentDate: null,
+        loading: true
       }
     }
   }

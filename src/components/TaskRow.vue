@@ -48,7 +48,7 @@ export default {
     methods: {
         toggleCheckedState: function () {
             this.checked = !this.checked
-            axios.post(url + 'tasks/check', qs.stringify({id: this.id}))
+            axios.post(url + 'tasks/check/', qs.stringify({id: this.id}))
             .then(function (response) {
             })
             .catch(function (error){
