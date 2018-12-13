@@ -2,7 +2,7 @@
     <v-card class="task-row-loader animate-flicker" color="#EEE">
         <v-container class="task-row-loader__container"> 
             <v-layout row align-center>
-                <v-flex xs1 offset-xs11>
+                <v-flex xs2 offset-xs10 sm1 offset-sm11>
                     <v-card-actions>
                         <v-btn class="task-row-loader__check-button"
                             fab dark small color="#FFF"
