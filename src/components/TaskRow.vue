@@ -2,12 +2,12 @@
     <v-card class="task-row" hover tile>
         <v-container class="task-row__container"> 
             <v-layout row align-center @click="toggleCheckedState">
-                <v-flex xs11>
+                <v-flex xs10 sm11>
                     <v-card-title class="task-row__title" :class="checked ? 'task-row__title--done' : ''" style="padding: 5px 10px">
                         {{ this.name }}
                     </v-card-title>
                 </v-flex>
-                <v-flex xs1>
+                <v-flex xs2 sm1>
                     <v-card-actions>
                         <v-btn width="30px" height="30px" class="task-row__check-button"
                             fab dark small color="success"
