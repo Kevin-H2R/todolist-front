@@ -55,7 +55,7 @@ export default {
             if (!date) return null
 
             const [year, month, day] = date.split('-')
-            return `${('0' + day).slice(-2)}/${month}/${year}`
+            return `${('0' + day).slice(-2)}/${('0' + month).slice(-2)}/${year}`
         },
         parseDate: function (date) {
             return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + ('0' + date.getDate()).slice(-2)

@@ -14,7 +14,7 @@
                     <v-flex xs1 offset-xs1>
                         <v-card-actions class="newtask-input__actions">
                             <v-fade-transition>
-                                <v-btn fab dark small color="green"  v-show="taskName.length > 0"
+                                <v-btn fab dark small color="green" v-show="taskName.trim().length > 0"
                                     class="newtask-input__button"
                                     @click="addTask"
                                     >
@@ -44,6 +44,10 @@ export default {
     },
     methods: {
         addTask: function () {
+            if (this.taskName.trim().length === 0) {
+                this.taskName = ''
+                return
+            }
             var that = this
             axios.post(url + 'tasks/create/', qs.stringify({name: this.taskName, date: this.date}))
             .then(function (response) {
